@@ -1,14 +1,19 @@
 package toby.springbook.user.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import toby.springbook.user.domain.User;
 
+@NoArgsConstructor
+@Setter
+@Getter
 public class UserDao {
-    private final ConnectionMaker connectionMaker;
+    private ConnectionMaker connectionMaker;
 
     public UserDao(ConnectionMaker connectionMaker) {
         this.connectionMaker = connectionMaker;

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="connectionMaker" class="toby.springbook.user.dao.SimpleConnectionMaker" />
+
+    <bean id="userDao" class="toby.springbook.user.dao.UserDao">
+        <property name="connectionMaker" ref="connectionMaker" />
+    </bean>
+    <bean id="accountDao" class="toby.springbook.user.dao.AccountDao">
+        <property name="connectionMaker" ref="connectionMaker" />
+    </bean>
+    <bean id="messageDao" class="toby.springbook.user.dao.MessageDao">
+        <property name="connectionMaker" ref="connectionMaker" />
+    </bean>
+</beans>
