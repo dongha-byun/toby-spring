@@ -4,15 +4,24 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="connectionMaker" class="toby.springbook.user.dao.SimpleConnectionMaker" />
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource" >
+        <property name="driverClass" value="org.h2.Driver" />
+        <property name="url" value="jdbc:h2:tcp://localhost/~/byun/h2/dbfile/h2_214/spring-book" />
+        <property name="username" value="sa" />
+        <property name="password" value="" />
+    </bean>
 
     <bean id="userDao" class="toby.springbook.user.dao.UserDao">
-        <property name="connectionMaker" ref="connectionMaker" />
+        <property name="jdbcContext" ref="jdbcContext" />
+        <property name="dataSource" ref="dataSource" />
     </bean>
     <bean id="accountDao" class="toby.springbook.user.dao.AccountDao">
-        <property name="connectionMaker" ref="connectionMaker" />
+        <property name="dataSource" ref="dataSource" />
     </bean>
     <bean id="messageDao" class="toby.springbook.user.dao.MessageDao">
-        <property name="connectionMaker" ref="connectionMaker" />
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <bean id="jdbcContext" class="toby.springbook.user.dao.context.JDBCContext">
+        <property name="dataSource" ref="dataSource" />
     </bean>
 </beans>

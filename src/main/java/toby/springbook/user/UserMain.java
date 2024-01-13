@@ -1,13 +1,15 @@
 package toby.springbook.user;
 
 import java.sql.SQLException;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import toby.springbook.user.dao.SimpleConnectionMaker;
 import toby.springbook.user.dao.UserDao;
+import toby.springbook.user.dao.context.JDBCContext;
 import toby.springbook.user.domain.User;
 
 public class UserMain {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao dao = new UserDao(new SimpleConnectionMaker());
+        UserDao dao = new UserDao(new JDBCContext(new SimpleDriverDataSource()), new SimpleDriverDataSource());
 
         User user = new User();
         user.setId("byunsw4");

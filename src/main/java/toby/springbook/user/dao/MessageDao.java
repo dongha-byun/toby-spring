@@ -1,5 +1,6 @@
 package toby.springbook.user.dao;
 
+import javax.sql.DataSource;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,9 +9,9 @@ import lombok.Setter;
 @Setter
 @Getter
 public class MessageDao {
-    private ConnectionMaker connectionMaker;
+    private DataSource dataSource;
 
-    public MessageDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    public MessageDao(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }

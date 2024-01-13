@@ -1,27 +1,35 @@
 package toby.springbook.user.dao;
 
+import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import toby.springbook.user.dao.context.JDBCContext;
 
 @Configuration
 public class DaoFactory {
     @Bean
     public UserDao userDao() {
-        return new UserDao(connectionMaker());
+        return new UserDao(jdbcContext(), dataSource());
     }
 
     @Bean
     public AccountDao accountDao() {
-        return new AccountDao(connectionMaker());
+        return new AccountDao(dataSource());
     }
 
     @Bean
     public MessageDao messageDao() {
-        return new MessageDao(connectionMaker());
+        return new MessageDao(dataSource());
     }
 
     @Bean
-    public ConnectionMaker connectionMaker() {
-        return new SimpleConnectionMaker();
+    public DataSource dataSource() {
+        return new SimpleDriverDataSource();
+    }
+
+    @Bean
+    public JDBCContext jdbcContext() {
+        return new JDBCContext(dataSource());
     }
 }
