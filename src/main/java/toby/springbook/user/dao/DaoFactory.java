@@ -10,7 +10,9 @@ import toby.springbook.user.dao.context.JDBCContext;
 public class DaoFactory {
     @Bean
     public UserDao userDao() {
-        return new UserDao(jdbcContext(), dataSource());
+        UserDao userDao = new UserDao();
+        userDao.setDataSource(dataSource());
+        return userDao;
     }
 
     @Bean

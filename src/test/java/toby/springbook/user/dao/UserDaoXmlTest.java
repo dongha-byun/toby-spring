@@ -12,12 +12,10 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
 import toby.springbook.user.domain.User;
 
-@SpringBootTest
+
 public class UserDaoXmlTest {
 
-    @Autowired
     UserDao userDao;
-
     User user1;
     User user2;
     User user3;
@@ -32,7 +30,7 @@ public class UserDaoXmlTest {
     }
 
     @Test
-    public void addAndGet() throws SQLException {
+    public void addAndGet() {
         userDao.deleteAll();
         assertThat(userDao.getCount()).isEqualTo(0);
 
@@ -50,7 +48,7 @@ public class UserDaoXmlTest {
     }
 
     @Test
-    void count() throws SQLException {
+    void count() {
         userDao.deleteAll();
         assertThat(userDao.getCount()).isEqualTo(0);
 
@@ -65,7 +63,7 @@ public class UserDaoXmlTest {
     }
 
     @Test
-    void getUserFailure() throws SQLException {
+    void getUserFailure() {
         userDao.deleteAll();
         assertThat(userDao.getCount()).isEqualTo(0);
 
